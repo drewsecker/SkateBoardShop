@@ -10,15 +10,19 @@ header {
     background-color:crimson;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
 }
 
 .logo {
     flex: 1;
+    max-width: 10%;
+    height: auto;
 }
 
 #search {
     height: 35px;
     flex: 2;
+    min-width: 50px;
 }
 
 .navigation {
@@ -27,6 +31,7 @@ header {
     font-size: large;
     gap: 1rem;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 header a {
@@ -48,8 +53,8 @@ footer i {
     margin-left: 1rem;
 }
 
-body, html {
-    height: 100%;
+body {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -57,4 +62,135 @@ body, html {
 body {
     background-color: darkslategray;
     color: gainsboro;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+h1 {
+    font-size: 60px;
+    padding: 1.5rem;
+    padding-bottom: .1rem;
+    color:crimson;
+}
+
+.webInfo {
+    font-size: large;
+    padding-bottom: .3rem;
+}
+
+.browse {
+    background-color: crimson;
+    color: gainsboro;
+    padding: .5rem;
+    text-decoration: none;
+    margin: 1rem;
+}
+
+
+.backPic {
+    width: 500px;
+    max-width: 90%;
+    height: auto;
+    align-self: center;
+}
+
+.itemH1 {
+    padding-top: .5rem;
+}
+
+.item {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 40vh;
+    width: 100%;
+}
+
+.item > a {
+    color: gainsboro;
+    text-decoration: none;
+    background-color: crimson;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10%;
+    min-width: 180px;
+    min-height: 250px;
+    margin-bottom: 1rem;
+}
+
+.boardPic {
+    background-color: white;
+    width: 150px;
+    height: 180px;
+}
+
+.name {
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr .75fr 1fr;
+    gap: .75rem;
+}
+
+.price {
+    color: lightgreen;
+}
+
+.thrasherItem {
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    gap: 1rem;
+}
+
+.itemBoardPic {
+    width: 90%;
+    height: auto;
+}
+
+.thrasherInfo {
+    align-self: center;
+    font-size: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.itemDescription {
+    padding-top: .1rem;
+    font-size: 25px;
+}
+
+.itemButtons {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1rem;
+}
+
+.itemButtons > button {
+    padding: .75rem 2rem;
+    font-size: 20px;
+    outline: none;
+    border-radius: 10%;
+    color: gainsboro;
+}
+
+.edit {
+    background-color: transparent;
+}
+
+.delete {
+    background-color: crimson;
 }
