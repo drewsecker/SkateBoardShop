@@ -44,8 +44,7 @@ footer {
     justify-content: space-between;
     color: gainsboro;
     background-color:crimson;
-    padding: 1rem .25rem;
-    font-size: large;
+    padding: 1rem .5rem;
     margin-top: auto;
 }
 
@@ -193,4 +192,37 @@ h1 {
 
 .delete {
     background-color: crimson;
+}
+
+.new {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+}
+
+.newText {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: start;
+    align-items: center;
+    font-size: large;
+}
+
+.newForm {
+    display: grid;
+    grid-template-columns: .25fr 1fr;
+    grid-template-rows: auto;
+    padding: 2rem;
+    font-size: large;
+    background-color: crimson;
+    border-radius: 10%;
+    gap: 1rem;
+    color: gainsboro;
+    
+}
+
+select, input[type="submit"] {
+    background-color: white;
 }

@@ -24,8 +24,40 @@
         </div>
     </header>
 
-    <main>
-        <p>p</p>
+    <main class="new">
+        <div class="newText">
+            <h1>Sell an Item</h1>
+            <p>Just Fill Out This Form!</p>
+        </div>
+        
+        <form action="#" class="newForm">
+            <label for="condition">Condition:</label>
+            <select name="condition" id="condition" required>
+                <option value="">Select an Option</option>
+                <option value="mint">Mint</option>
+                <option value="new">New</option>
+                <option value="likeNew">Like New</option>
+                <option value="good">Good</option>
+                <option value="wear">Wear</option>
+            </select>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="seller">Seller:</label>
+            <input type="text" id="seller" name="seller" required>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+
+            <label for="details">Details:</label>
+            <textarea name="details" id="details" cols="25" rows="3" required></textarea>
+
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
+
+            <br>
+            <input type="submit" value="Submit" id="submit">
+        </form>
     </main>
 
     <footer>
