@@ -1,0 +1,37 @@
+<!-- new.html allows you to add a new item to the marketplace, using a form for data collection. -->
+<%- include('../partials/header.ejs')%>
+    <main class="new">
+        <div class="newText">
+            <h1>Sell an Item</h1>
+            <p>Just Fill Out This Form!</p>
+        </div>
+        <form action="/boards" method = "POST" enctype="multipart/form-data" class="newForm">
+            <label for="condition">Condition:</label>
+            <select name="condition" id="condition" required>
+                <option value="">Select an Option</option>
+                <option value="Mint">Mint</option>
+                <option value="New">New</option>
+                <option value="Like New">Like New</option>
+                <option value="Good">Good</option>
+                <option value="Wear">Wear</option>
+            </select>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="seller">Seller:</label>
+            <input type="text" id="seller" name="seller" required>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+
+            <label for="details">Details:</label>
+            <textarea name="details" id="details" cols="25" rows="3" required></textarea>
+
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
+
+            <br>
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </main>
+    <%- include('../partials/footer.ejs')%>

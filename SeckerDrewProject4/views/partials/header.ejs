@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">
+            <img src="/images/logo.png" alt="A picture of a skateboard logo" width="100">
+        </a>
+        <form action="/boards" method="GET">
+            <input type="text" name="query" id="search" placeholder="Search for items">
+            <button type="submit" class="fa fa-search"></button>
+        </form>
+        <div class="navigation">
+            <a href="/boards">Browse</a>
+            <a href="/boards/new">Sell</a>
+            <%if(!user) {%>
+                <a href='/users/new'>Sign Up</a>
+                <a href='/users/login'>Login</a>
+            <%} else {%>
+                <a href='/users/profile'>My Account</a>
+                <a href='/users/logout'>Log Out</a>
+            <%}%>
+        </div>
+    </header>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+    
+                    <% if(successMessages.length > 0) {%>
+    
+                        <% successMessages.forEach(message=>{%>
+                            <div class='success'>
+                                <%=message%>
+                            </div>
+                            <%});%>
+                                <%}%>

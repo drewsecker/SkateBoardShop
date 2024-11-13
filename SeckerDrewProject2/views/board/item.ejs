@@ -1,0 +1,24 @@
+<!-- item.html gives a description of an individual item. For the purpose of this project, I will only do a single item page. -->
+<%- include('../partials/header.ejs')%>
+    <main>
+        <div class="thrasherItem">
+            <img src="<%= board.image %>" alt="A picture of <%= board.title %>" class="itemBoardPic" width="150">
+            <div class="thrasherInfo">
+                <h2 class="itemName"><%= board.title %></h2>
+                <p class="itemCondition">Condition: <strong><%= board.condition %></strong></p> 
+                <p class="itemPrice">Price: <strong>$<%= board.price %></strong></p>
+                <p class="seller">Seller: <strong><%= board.seller %></strong></p>
+                <p class="itemDescription"><%= board.details %></p>
+                
+                <div class="itemButtons">
+                    <form action="/boards/<%= board.id %>/edit" method="GET">
+                        <button class="edit">Edit</button>
+                    </form>
+                    <form action="/boards/<%= board.id %>?_method=DELETE" method="POST">
+                        <button class="delete">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>
