@@ -1,6 +1,6 @@
 const model = require('../models/user');
 const Board = require('../models/board');
-
+//User controller
 exports.new = (req, res)=>{
     req.flash('success', 'User created successfully');
     return res.render('./user/new');
@@ -10,7 +10,7 @@ exports.create = (req, res, next)=>{
     let user = new model(req.body);
     user.save()
     .then(user=> res.redirect('/users/login'))
-    .catch(err=>{
+    .catch(err=>{ //Error Handling
         if(err.name === 'ValidationError' ) {
             req.flash('error', err.message);  
             return res.redirect('/users/new');
@@ -44,7 +44,7 @@ exports.login = (req, res, next)=>{
                     req.session.user = user._id;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/users/profile');
-            } else {
+            } else { //Error handling
                 req.flash('error', 'wrong password');      
                 res.redirect('/users/login');
             }
@@ -67,7 +67,7 @@ exports.profile = (req, res, next)=>{
 
 exports.logout = (req, res, next)=>{
     req.session.destroy(err=>{
-        if(err) {
+        if(err) { //Error handling
             req.flash('error', err.message);
             return next(err);
         } else {

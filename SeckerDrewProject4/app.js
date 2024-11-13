@@ -1,3 +1,7 @@
+//Skateboard digital marketplace using Express.js and Mongoose.
+//Created by Andrew Secker.
+//Download the packages located in package.json to run. (npm i express morgan ...)
+
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
@@ -15,7 +19,8 @@ const app = express();
 let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
-const mongUri = 'mongodb+srv://admin:admin123@cluster0.y383u.mongodb.net/project4?retryWrites=true&w=majority&appName=Cluster0';
+//Replace {username} and {password} with your Mongo Atlas cluster credientials
+const mongUri = 'mongodb+srv://{username}:{password}@cluster0.y383u.mongodb.net/project4?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(mongUri)
 .then(()=>{
@@ -24,10 +29,10 @@ mongoose.connect(mongUri)
     });
 })
 .catch(err=>console.log(err.message));
-
+//Adding session functionality
 app.use(
     session({
-        secret: 'fal39emdsakj49w1nmd1nm0ffnw',
+        secret: 'fal39emdsakj49w1nmd1nm0ffnw', //Replace with a secure secret
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({mongoUrl: mongUri, collectionName: 'sessions'}),
@@ -35,6 +40,7 @@ app.use(
     })
 );
 
+//Adding flash message functionality
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -46,9 +52,10 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
-app.use(morgan('tiny'));
+app.use(morgan('tiny')); //Displays incoming requests
 app.use(methodOverride('_method'));
 
+//Multer setup to upload images for products
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/images');
@@ -64,10 +71,12 @@ app.get('/', (req, res)=>{
     res.render('./board/index');
 });
 
+//Use routes
 app.use('/boards', boardRoutes(upload));
 
 app.use('/users', userRoutes);
 
+//Error handling
 app.use((req, res, next)=>{
     let err = new Error('The server cannot locate ' + req.url);
     err.status = 404;

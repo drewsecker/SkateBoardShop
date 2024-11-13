@@ -11,7 +11,8 @@ const app = express();
 let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
-const mongUri = 'mongodb+srv://admin:admin123@cluster0.y383u.mongodb.net/project3?retryWrites=true&w=majority&appName=Cluster0';
+//Replace {username} and {password} with your Mongo Atlas cluster credientials
+const mongUri = 'mongodb+srv://{username}:{password}@cluster0.y383u.mongodb.net/project3?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose.connect(mongUri)
 .then(()=>{

@@ -3,7 +3,7 @@ const controller = require('../controllers/userController');
 const {isGuest, isLoggedIn} = require('../middlewares/auth');
 
 const router = express.Router();
-
+//User router
 router.get('/new', isGuest, controller.new);
 
 router.post('/', isGuest, controller.create);

@@ -1,5 +1,5 @@
 const Board = require('../models/board');
-
+//Middlewares to validate Mongodb IDs
 exports.validId = (req, res, next)=>{
     let id = req.params.id;
 

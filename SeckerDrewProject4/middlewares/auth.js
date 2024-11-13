@@ -1,5 +1,5 @@
 const Board = require('../models/board');
-
+//Middlewares to authenticate requests and avoid code duplication
 exports.isGuest = (req, res, next)=>{
     if(!req.session.user) {
         return next();

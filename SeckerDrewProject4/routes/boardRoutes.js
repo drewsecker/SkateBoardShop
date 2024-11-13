@@ -4,7 +4,7 @@ const {isLoggedIn, isSeller} = require('../middlewares/auth');
 const {validId} = require('../middlewares/validator.js');
 
 const router = express.Router();
-
+//Board router
 module.exports = (upload) => {
     router.get('/', controller.index);
 

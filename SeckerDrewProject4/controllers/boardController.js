@@ -1,10 +1,10 @@
 const model = require('../models/board.js');
-
+//Board controller
 exports.index = (req, res, next) => {
     let query = {};
     let sortedBy = {};
     
-    if (req.query.query) {
+    if (req.query.query) { //Search functionality
         const search = req.query.query.toLowerCase();
         query = {
             $or: [
@@ -37,7 +37,7 @@ exports.create = (req, res, next) => {
 
     board.save()
     .then(board => res.redirect('/boards/items'))
-    .catch(err => {
+    .catch(err => { //Error handling
         if (err.name === 'ValidationError') {
             err.status = 400;
             req.flash('error', 'Validation failed: ' + err.message);
@@ -50,11 +50,11 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id;
 
-    model.findById(id).populate('seller', 'firstName lastName')
+    model.findById(id).populate('seller', 'firstName lastName') //Data from the users collection
     .then(board => {
         if (board) {
             res.render('./board/item', {board});
-        } else {
+        } else { //Error handling
             let err = new Error('Cannot find a board with id ' + id);
             err.status = 404;
             next(err);
@@ -70,7 +70,7 @@ exports.edit = (req, res, next) => {
     .then(board => {
         if (board) {
             res.render('./board/edit', {board});
-        } else {
+        } else { //Error handling
             let err = new Error('Cannot find a board with id ' + id);
             err.status = 404;
             next(err);
@@ -97,13 +97,13 @@ exports.update = (req, res, next) => {
     .then(board => {
         if (board) {
             res.redirect('/boards/' + id);
-        } else {
+        } else { //Error handling
             let err = new Error('Cannot find a board with id ' + id);
             err.status = 404;
             next(err);
         }
     })
-    .catch(err => {
+    .catch(err => { //Error handling
         if (err.name === 'ValidationError') {
             err.status = 400;
             req.flash('error', 'Validation failed: ' + err.message);
@@ -120,7 +120,7 @@ exports.delete = (req, res, next) => {
     .then(board => {
         if (board) {
             res.redirect('/boards/items');
-        } else {
+        } else { //Error handling
             let err = new Error('Cannot find a board with id ' + id);
             err.status = 404;
             next(err);
