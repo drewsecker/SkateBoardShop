@@ -31,7 +31,8 @@ This application is a virtual marketplace designed to simulate a dynamic online 
 1. Download and unzip `SeckerDrewProject5`.
 2. Navigate to the directory in your IDE.
 3. Open a terminal in this directory and run: `npm i` to install all dependencies.
-4. Execute: `node app.js` to start the server and access the application through `localhost:3000` in your browser.
+4. Replace line 23 of `app.js` with your MongoDB URI.
+5. Execute: `node app.js` to start the server and access the application through `localhost:3000` in your browser.
 
 ## Additional Notes
 
