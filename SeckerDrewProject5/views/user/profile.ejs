@@ -1,0 +1,77 @@
+<%- include('../partials/header.ejs')%>
+
+<main class="new">
+    <div class="profileHead">
+        <h1>User Profile</h1>
+        <h2 id="welcome">Welcome, <%= user.firstName %> <%= user.lastName %>!</h2>
+        <h2>Your Listed Items</h2>
+    </div>
+    
+    <table class="profileTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (boards.length > 0) { %>
+                <% boards.forEach(function(board) { %>
+                    <tr>
+                        <td><a href="/boards/<%= board.id %>" class="itemLink"><%= board.title %></a></td>
+                        <td><%= board.active ? 'active' : 'inactive' %></td>
+                        <td>
+                            <a href="/boards/<%= board.id %>/edit" class="editButton">✏️</a>
+                            <form action="/boards/<%= board.id %>?_method=DELETE" method="POST" class="inlineForm">
+                                <button type="submit" class="deleteButton">🗑️</button>
+                            </form>
+                            <% if (board.totalOffers) { %>
+                                <form action="/boards/<%= board.id %>/offers" method="GET" class="inlineForm">
+                                    <button type="submit" class="offerButton">View Offers</button>
+                                </form>
+                            <%}%>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You have not listed any items.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <br>
+
+    <div class="offerHead"><h2>Your Offers</h2></div>
+    <table class="profileTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (offers.length > 0) { %>
+                <% offers.forEach(function(offer) { %>
+                    <tr>
+                        <td>
+                            <a href="/boards/<%= offer.board.id %>" class="itemLink">
+                                <%= offer.board.title %>
+                            </a>
+                        </td>
+                        <td><%= offer.status %></td>
+                        <td>$<%= offer.amount.toFixed(2) %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You have not made any offers.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</main>
+
+<%- include('../partials/footer.ejs')%>

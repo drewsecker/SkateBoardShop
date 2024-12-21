@@ -1,0 +1,26 @@
+<!-- items.html will showcase all items listed for sale. If an item is clicked, it will redirect you to item.html. -->
+<%- include('../partials/header.ejs')%>
+    <main>
+        <h1 class="itemH1">Items For Sale</h1>
+
+        <div class="item">
+            <% if (boards.length > 0) { %>
+                <% boards.forEach(function(board) { %>
+                    <%if (board.active) {%>
+                        <a href="/boards/<%= board.id %>">
+                            <img src="<%= board.image %>" alt="A picture of <%= board.title %>" class="boardPic" width="150">
+                            <h2 class="name"><%= board.title %></h2>
+                            <div class="info">
+                                <p class="condition"><%= board.condition %></p>
+                                <p class="price">$<%= board.price %></p>
+                                <p class="offers"><%= board.offers %> Offers</p>
+                            </div>
+                        </a>
+                    <%}%>
+                <% }) %>
+            <% } else { %>
+                <p>No items matched your search.</p>
+            <% } %>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

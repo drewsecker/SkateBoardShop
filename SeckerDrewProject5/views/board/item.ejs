@@ -1,0 +1,30 @@
+<!-- item.html gives a description of an individual item. For the purpose of this project, I will only do a single item page. -->
+<%- include('../partials/header.ejs')%>
+    <main>
+        <div class="thrasherItem">
+            <img src="<%= board.image %>" alt="A picture of <%= board.title %>" class="itemBoardPic" width="150">
+            <div class="thrasherInfo">
+                <h2 class="itemName"><%= board.title %></h2>
+                <p class="itemCondition">Condition: <strong><%= board.condition %></strong></p> 
+                <p class="itemPrice">
+                    <%if (board.active) { %>Price: <strong>$<%= board.price %></strong> | <%= board.totalOffers %> offers</p> 
+                        <% } else { %>
+                            Item is not available.
+                        <%}%>
+                <p class="seller">Seller: <strong><%= board.seller.firstName + ' ' + board.seller.lastName%></strong></p>
+                <p class="itemDescription"><%= board.details %></p>
+                <br>
+                <%if (board.active) { %>
+                    <form action="/boards/<%= board._id %>/offers" method = 'POST' class="newForm">
+                        <input type="number" id="amount" name="amount" required min="0.01" step="0.01">
+                        <input type="submit" value="Make an Offer:" id="submit">
+                    </form>
+                    <br>
+                    <% if(board.totalOffers) { %>
+                        <p class="itemOffers">Highest offer: <strong>$<%= board.highestOffer %></strong></p>
+                    <%}
+                }%>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

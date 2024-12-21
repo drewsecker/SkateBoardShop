@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs')%>
+
+<main class="new">
+    <div class="offerHead">
+        <h2>Offers Received For: <%= offers[0].board.title %></h2>
+    </div>
+    <table class="profileTable">
+        <thead>
+            <tr>
+                <th>Buyer</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (offers.length > 0) { %>
+                <% offers.forEach(function(offer) { %>
+                    <tr>
+                        <td><%= offer.user.firstName %> <%= offer.user.lastName %></td>
+                        <td>$<%= offer.amount.toFixed(2) %></td>
+                        <td>
+                            <% if(offer.board.active) { %>
+                            <form action="/boards/<%= offer.board.id %>/offers/<%= offer.id %>/accept" method="POST" class="inlineForm">
+                                <button type="submit" class="offerButton">Accept</button>
+                            </form>
+                            <%} else { %>
+                                <p>Status: <%= offer.status %></p>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You have not made any offers.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</main>
+
+<%- include('../partials/footer.ejs')%>

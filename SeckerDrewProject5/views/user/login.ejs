@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs')%>
+<main class="new">
+    <div class="newText">
+        <h1>Login</h1>
+        <p>Access your account by entering your login credentials below.</p>
+    </div>
+
+    <form action = '/users/login' method = 'POST' class="newForm">
+        <label for="email">Email Address:</label></td>
+        <input type="email" id="email" name="email" required></td>
+           
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" maxlength="64" required>
+           
+        <input type="submit" value="Login">     
+    </form>
+
+    </div>
+</main>
+    <%- include('../partials/footer.ejs')%>
+
+

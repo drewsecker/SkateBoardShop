@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')%>
+
+<main class="new">
+    <div class="newText">
+        <h1>Edit your Item</h1>
+        <p>Update the form below to edit your listing!</p>
+    </div>
+    
+    <form action="/boards/<%= board.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="newForm">
+
+        <label for="condition">Condition:</label>
+        <select name="condition" id="condition" required>
+            <option value="">Select an Option</option>
+            <option value="Mint" <% if (board.condition === 'Mint') { %> selected <% } %>>Mint</option>
+            <option value="New" <% if (board.condition === 'New') { %> selected <% } %>>New</option>
+            <option value="Like New" <% if (board.condition === 'Like New') { %> selected <% } %>>Like New</option>
+            <option value="Good" <% if (board.condition === 'Good') { %> selected <% } %>>Good</option>
+            <option value="Wear" <% if (board.condition === 'Wear') { %> selected <% } %>>Wear</option>
+        </select>
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%= board.title %>" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="<%= board.price %>" required>
+
+        <label for="details">Details:</label>
+        <textarea name="details" id="details" cols="25" rows="3" required><%= board.details %></textarea>
+
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image">
+
+        <br>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+</main>
+
+<%- include('../partials/footer.ejs')%>
